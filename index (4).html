@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josh Darroch | AI in Business Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0e0e0d;
+    --off-black: #1a1a18;
+    --magenta: #e8197d;
+    --magenta-dark: #c0146a;
+    --off-white: #f6f4f1;
+    --white: #ffffff;
+    --border: #e0ddd8;
+    --text: #3a3a38;
+    --text-light: #7a7a78;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--black);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 2px solid var(--off-black);
+  }
+
+  .nav-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .nav-brand span { color: var(--magenta); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--magenta); }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    border-bottom: 5px solid var(--magenta);
+    padding: 72px 40px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Magenta grid overlay */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,25,125,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,25,125,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(232,25,125,0.3);
+    max-width: 120px;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.0;
+    margin-bottom: 10px;
+  }
+
+  .hero-title-accent { color: var(--magenta); }
+
+  .hero-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 36px;
+  }
+
+  .hero-about {
+    max-width: 680px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    border-left: 3px solid var(--magenta);
+    padding-left: 20px;
+  }
+
+  /* SECTION LAYOUT */
+  section { padding: 64px 40px; }
+  section:nth-child(even) { background: var(--white); }
+
+  .section-inner { max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 36px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  /* PROJECT GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--magenta);
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 24px rgba(232,25,125,0.12), 0 0 0 1px rgba(232,25,125,0.2);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .card-emoji {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-company {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 4px;
+  }
+
+  .card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--black);
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--off-white);
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+  }
+
+  .card-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.15s, color 0.15s;
+    margin-top: auto;
+  }
+
+  .card-link:hover {
+    color: var(--magenta-dark);
+    border-bottom-color: var(--magenta-dark);
+  }
+
+  /* TAKEAWAYS */
+  .takeaways-section { background: var(--off-black); border-bottom: 5px solid var(--magenta); }
+
+  .takeaways-section h2 { color: var(--white); border-bottom-color: rgba(255,255,255,0.1); }
+  .takeaways-section .section-label { color: var(--magenta); }
+
+  .takeaway-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .takeaway-item {
+    padding: 28px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .takeaway-item:last-child { border-right: none; }
+
+  .takeaway-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--magenta);
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .takeaway-item p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 5px solid var(--magenta);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .footer-links {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    color: var(--magenta);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover { text-decoration: underline; }
+
+  .footer-built {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 48px 20px 48px; }
+    section { padding: 48px 20px; }
+    .grid { grid-template-columns: 1fr; }
+    .takeaway-item { border-right: none; }
+    footer { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Josh Darroch <span>/ MIS 432</span></div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#takeaways">Takeaways</a></li>
+    <li><a href="mailto:darrochj@wwu.edu">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">MIS 432 · AI in Business · Spring 2026</div>
+    <h1>AI in Business<br><span class="hero-title-accent">Portfolio</span></h1>
+    <p class="hero-subtitle">Western Washington University · College of Business and Economics</p>
+    <p class="hero-about">
+      This portfolio documents seven labs I completed in MIS 432, each built around a real company using AI to solve a real business problem. Across the quarter I built working prototypes, audited AI outputs, designed governance frameworks, and tested systems to the point of failure. What I learned is that the gap between AI hype and AI implementation is almost always a data problem, a process problem, or a human oversight problem — never just a technology problem.
+    </p>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Lab Work</div>
+    <h2>Seven Companies, Seven Systems</h2>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🧬</div>
+          <div>
+            <div class="card-company">EveryCure</div>
+            <div class="card-title">AI for Drug Repurposing</div>
+          </div>
+        </div>
+        <p class="card-desc">Explored how EveryCure uses knowledge graphs and NLP to identify existing approved drugs that may treat rare diseases, dramatically cutting the time and cost of drug discovery. Built a prototype that queries drug-disease relationship data and surfaces repurposing candidates.</p>
+        <div class="tags">
+          <span class="tag">Knowledge Graphs</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Drug Discovery</span>
+          <span class="tag">Graph Databases</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/everycure-drug-repurposing-system/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🎬</div>
+          <div>
+            <div class="card-company">Netflix</div>
+            <div class="card-title">A/B Testing at Scale</div>
+          </div>
+        </div>
+        <p class="card-desc">Analyzed how Netflix runs thousands of simultaneous A/B tests to optimize everything from thumbnail artwork to playback algorithms, and how statistical rigor prevents false positives at massive scale. Built a simulation of Netflix's experimentation framework and tested it against real design decisions.</p>
+        <div class="tags">
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Statistical Inference</span>
+          <span class="tag">Experimentation</span>
+          <span class="tag">Personalization</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/netflix-ab-testing/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🎵</div>
+          <div>
+            <div class="card-company">Spotify</div>
+            <div class="card-title">Recommendation Systems</div>
+          </div>
+        </div>
+        <p class="card-desc">Reverse-engineered how Spotify's Discover Weekly uses collaborative filtering, NLP on song lyrics, and audio feature analysis to generate personalized playlists. Built a simplified recommendation engine and evaluated how cold-start problems affect new users.</p>
+        <div class="tags">
+          <span class="tag">Recommendation Systems</span>
+          <span class="tag">Collaborative Filtering</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Cold Start Problem</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/Spotify-Recommendation-Lab/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🚗</div>
+          <div>
+            <div class="card-company">Uber</div>
+            <div class="card-title">Demand Forecasting</div>
+          </div>
+        </div>
+        <p class="card-desc">Studied how Uber uses time-series forecasting and real-time data to predict ride demand by location and time, enabling dynamic driver positioning and surge pricing. Built a forecasting model using historical trip data and evaluated its accuracy against actual demand patterns.</p>
+        <div class="tags">
+          <span class="tag">Time-Series Forecasting</span>
+          <span class="tag">Dynamic Pricing</span>
+          <span class="tag">Demand Modeling</span>
+          <span class="tag">Geospatial AI</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/Uber-Forecasting/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🚙</div>
+          <div>
+            <div class="card-company">Waymo</div>
+            <div class="card-title">Autonomous Vehicle AI</div>
+          </div>
+        </div>
+        <p class="card-desc">Examined how Waymo's self-driving system integrates LiDAR, radar, and camera inputs through a perception-prediction-planning pipeline, and how reinforcement learning enables safe navigation in complex urban environments. Analyzed the safety validation process and what it takes to earn regulatory approval.</p>
+        <div class="tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Reinforcement Learning</span>
+          <span class="tag">Sensor Fusion</span>
+          <span class="tag">Safety Validation</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/Waymo-Webpage/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-emoji">🏠</div>
+          <div>
+            <div class="card-company">Airbnb</div>
+            <div class="card-title">Smart Pricing &amp; Trust Systems</div>
+          </div>
+        </div>
+        <p class="card-desc">Analyzed how Airbnb uses machine learning for dynamic pricing recommendations, fraud detection, and trust scoring across a two-sided marketplace. Explored how the platform balances host autonomy with algorithmic nudges and what happens when the system gets the incentives wrong.</p>
+        <div class="tags">
+          <span class="tag">Dynamic Pricing</span>
+          <span class="tag">Fraud Detection</span>
+          <span class="tag">Two-Sided Markets</span>
+          <span class="tag">Trust &amp; Safety</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/AirBnb-Report/" target="_blank">View Project →</a>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1; max-width: 480px;">
+        <div class="card-header">
+          <div class="card-emoji">🤖</div>
+          <div>
+            <div class="card-company">Healthcare AI</div>
+            <div class="card-title">Agentic AI in Insurance Appeals</div>
+          </div>
+        </div>
+        <p class="card-desc">Built a working AI agent in n8n that reads insurance denial letters, pulls patient charts, checks policy language, and drafts appeal letters autonomously — then broke it, audited its output line by line, designed a five-layer governance framework, and stress-tested its ethics at scale. Also built a personal Concert Weekend Agent using the same architecture.</p>
+        <div class="tags">
+          <span class="tag">Agentic AI</span>
+          <span class="tag">AI Governance</span>
+          <span class="tag">n8n Workflows</span>
+          <span class="tag">Human-in-the-Loop</span>
+          <span class="tag">Hallucination Guardrails</span>
+        </div>
+        <a class="card-link" href="https://pancakes1406.github.io/AgenticAi/" target="_blank">View Project →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section id="takeaways" class="takeaways-section">
+  <div class="section-inner">
+    <div class="section-label">What I Learned</div>
+    <h2>Big-Picture Takeaways</h2>
+    <div class="takeaway-grid">
+      <div class="takeaway-item">
+        <div class="takeaway-num">01</div>
+        <p>Every assumption at the data stage ends up embedded in the decision. In the Uber lab, a missing feature for a new neighborhood cascaded forward silently for weeks — drivers were earning less on routes the algorithm confidently sent them to, and riders were waiting on streets the model didn't know existed yet.</p>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-num">02</div>
+        <p>The algorithm doesn't evaluate quality — it evaluates data. EveryCure can't find a drug-disease match without molecular relationship data. Airbnb can't surface Elena's listing without booking signals. Spotify can't recommend without behavioral history. Cold start isn't a bug, it's a structural feature of how these systems work.</p>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-num">03</div>
+        <p>One line in a system prompt is the difference between a trustworthy agent and a liability. When I deactivated the patient chart tool in the agentic AI lab, the agent dropped from Level 3 to Level 2 instantly — not because it got dumber, but because its access changed. And without the no-hallucination guardrail, it would have fabricated clinical evidence that looked completely professional.</p>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-num">04</div>
+        <p>Optimization without context is just automation with consequences. Uber's surge algorithm called 4.8x during a simulated earthquake because it saw the same supply-demand gap it always sees — it had no category for "emergency." Netflix's A/B system picks the highest-CTR thumbnail with no way to know if it's misleading. The hardest governance question is never "does it work?" It's "does it know when to stop?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Josh Darroch</div>
+  <div class="footer-links">
+    <a href="mailto:darrochj@wwu.edu">darrochj@wwu.edu</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/joshdarroch/" target="_blank">linkedin.com/in/joshdarroch</a>
+  </div>
+  <div class="footer-built">Built with Claude &nbsp;·&nbsp; MIS 432 · AI in Business &nbsp;·&nbsp; Western Washington University</div>
+</footer>
+
+</body>
+</html>
